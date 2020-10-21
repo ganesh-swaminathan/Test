@@ -7,7 +7,7 @@ app.get("/", function(req, res) {
 });  
 
 app.get("/users", function() {  
-  MongoClient.connect("mongodb://localhost:27017/test", function(err, db) {  
+  MongoClient.connect("mongodb://admin01:empty@localhost:27017/admin", function(err, db) {  
     if (err) next  
     db  
       .collection("users")  
