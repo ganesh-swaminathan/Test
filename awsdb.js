@@ -1,25 +1,9 @@
-var express = require("express");  
-var app = express();  
-var MongoClient = require("mongodb").MongoClient;  
 
-app.get("/", function(req, res) {  
-  res.send("Hello World!");  
-});  
-
-app.get("/users", function() {  
-  MongoClient.connect("mongodb://admin01:empty@localhost:27017/admin", function(err, db) {  
-    if (err) next  
-    db  
-      .collection("users")  
-      .find()  
-      .toArray(function(err, result) {  
-        if (err) throw err;  
-
-        res.json(result)  
-      });  
-  });  
-});
-
-app.listen(3000,function(){  
-    console.log('Express app start on port 3000')  
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://devops:QWEasd123@cluster0.iszc2.mongodb.net/devops?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
 });
